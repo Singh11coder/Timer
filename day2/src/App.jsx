@@ -25,6 +25,7 @@ function App() {
   }
 
   const handleTimer = () => {
+      
       let ans = val;
       let hr = Math.floor(ans/3600);
       ans%=3600;
@@ -82,8 +83,13 @@ function App() {
   }
 
   return (
-    <div>
-       
+    <div className="p-40">
+       <h1 className="text-4xl ml-5 mb-20">Count Down timer</h1>
+       <div className='flex gap-16 ml-6 text-2xl'>
+         <h1>Hours</h1>
+         <h1>Min</h1>
+         <h1>Sec</h1>
+       </div>
        <input
        name="hour"
        value={time.hour}
