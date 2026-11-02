@@ -36,14 +36,18 @@ function App() {
       setTime(newTime);
 
       const interval = setInterval(() => {
+
           setTime((prev) => {
-             if(prev.sec<=1){
+            
+
+            if(prev.hour <=0 && prev.min<=0 && prev.sec<=0){
+              clearInterval(interval);
+              setTime((prev) => ({...prev,hour:0,min:0,sec:0}))
+              return prev;
+            }
+             if(prev.sec<=0){
                if(prev.min<=0){
-                 if(prev.hour<=0){
-                   if(prev.min<=0 && prev.sec<=0){
-                     clearInterval(interval);
-                   }
-                 }
+
                   return {
                     ...prev,
                     hour:prev.hour-1,
@@ -70,16 +74,16 @@ function App() {
      setTime((prev) => {
         return {
           ...prev,
-          hour:0,
-          min:0,
-          sec:0
+          hour:'00',
+          min:'00',
+          sec:'00'
         }
      })
   }
 
   return (
     <div>
-       <h1>{val}</h1>
+       
        <input
        name="hour"
        value={time.hour}
