@@ -6,9 +6,9 @@ function App() {
   const [val,setVal] = useState(0);
 
   const [time,setTime] = useState({
-     sec:null,
-     min:null,
-     hour:null
+     sec:"00",
+     min:"00",
+     hour:"00"
   })
      
   const handleChange = (e) => {
@@ -33,7 +33,11 @@ function App() {
       ans%=60;
       ans = Math.floor(ans);
       
-      let newTime = {...time,hour:hr,min:min,sec:ans}
+      let newTime = {...time,
+        hour:`${hr<=10?"0":""}${hr}`,
+        min:`${min<=10?"0":""}${min}`,
+        sec:`${ans<=10?"0":""}${ans}`
+      }
       setTime(newTime);
 
       const interval = setInterval(() => {
@@ -51,20 +55,20 @@ function App() {
 
                   return {
                     ...prev,
-                    hour:prev.hour-1,
+                    hour:`${prev.hour<=10 ? "0" : ""}${prev.hour-1}`,
                     min:59,
                     sec:59
                   }
                 }
                return {
                  ...prev,
-                 min:prev.min-1,
+                 min:`${prev.min<=10 ? "0" : ""}${prev.min-1}`,
                  sec:59
                }
              }
              return{
                ...prev,
-               sec:prev.sec-1
+               sec:`${prev.sec<=10 ? "0" : ""}${prev.sec-1}`
              }
           })
       },1000)
